@@ -1,0 +1,204 @@
+<script>
+const EuropaiUnio = [{
+        orszag: "Ausztria",
+        csatlakozas: "1995.01.01"
+    },
+    {
+        orszag: "Belgium",
+        csatlakozas: "1958.01.01"
+    },
+    {
+        orszag: "Bulgária",
+        csatlakozas: "2007.01.01"
+    },
+    {
+        orszag: "Ciprus",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Csehország",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Dánia",
+        csatlakozas: "1973.01.01"
+    },
+    {
+        orszag: "Egyesült Királyság",
+        csatlakozas: "1973.01.01"
+    },
+    {
+        orszag: "Észtország",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Finnország",
+        csatlakozas: "1995.01.01"
+    },
+    {
+        orszag: "Franciaország",
+        csatlakozas: "1958.01.01"
+    },
+    {
+        orszag: "Görögország",
+        csatlakozas: "1981.01.01"
+    },
+    {
+        orszag: "Hollandia",
+        csatlakozas: "1958.01.01"
+    },
+    {
+        orszag: "Horvátország",
+        csatlakozas: "2013.07.01"
+    },
+    {
+        orszag: "Írország",
+        csatlakozas: "1973.01.01"
+    },
+    {
+        orszag: "Lengyelország",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Lettország",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Litvánia",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Luxemburg",
+        csatlakozas: "1958.01.01"
+    },
+    {
+        orszag: "Magyarország",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Málta",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Németország",
+        csatlakozas: "1958.01.01"
+    },
+    {
+        orszag: "Olaszország",
+        csatlakozas: "1958.01.01"
+    },
+    {
+        orszag: "Portugália",
+        csatlakozas: "1986.01.01"
+    },
+    {
+        orszag: "Románia",
+        csatlakozas: "2007.01.01"
+    },
+    {
+        orszag: "Spanyolország",
+        csatlakozas: "1986.01.01"
+    },
+    {
+        orszag: "Svédország",
+        csatlakozas: "1995.01.01"
+    },
+    {
+        orszag: "Szlovákia",
+        csatlakozas: "2004.05.01"
+    },
+    {
+        orszag: "Szlovénia",
+        csatlakozas: "2004.05.01"
+    }
+]
+
+function TagallamokSzama(vizsgaltTomb){
+	return vizsgaltTomb.length;
+}
+document.write("1. feladat: Az Európai Uniónak " +TagallamokSzama(EuropaiUnio)+" tagja van");
+
+document.write("<hr>");
+
+function CsatlakozasokSzama2007(vizsgaltTomb){
+	let orszag2007=0;
+    for(let i=0;i<vizsgaltTomb.length;i++){
+    	if (vizsgaltTomb[i].csatlakozas.slice(0,4)=="2007"){
+        	orszag2007++;
+        }
+    }
+    return orszag2007
+}
+document.write("2. feladat: 2007-ben "+CsatlakozasokSzama2007(EuropaiUnio)+" ország csatlakozott ");
+
+document.write("<hr>");
+
+function CsatlakozasokSzamaAdottEvben(vizsgaltTomb,adottEv){
+	let adottEvbenCsatlakozott=0;
+    for(let i=0;i<vizsgaltTomb.length;i++){
+    	if (vizsgaltTomb[i].csatlakozas.slice(0,4)==adottEv){
+        	adottEvbenCsatlakozott++;
+    	}
+	}
+    return adottEvbenCsatlakozott;
+}
+let ev=2004;
+document.write("2.1. feladat: "+ev+"-ben "+CsatlakozasokSzamaAdottEvben(EuropaiUnio,ev)+" ország csatlakozott");
+
+document.write("<hr>");
+
+function MagyarorszagTagjaE(vizsgaltTomb){
+    for (i=0;i<vizsgaltTomb.length;i++){
+    	if (vizsgaltTomb[i].orszag=="Magyarország"){
+        	return true;
+        }
+    }
+    return false;
+}
+function IgenNem(ertek){
+	if (ertek==true){
+    	return "Igen"
+    }
+    else{
+    	return "Nem"
+    }
+}
+
+/*function ternary(ertek){
+	return ertek ? "igen" : "nem"
+}*/
+document.write("3. feladat: Magyarország tagja az Európai Uniónak? "+IgenNem(MagyarorszagTagjaE(EuropaiUnio)));
+document.write("<hr>");
+
+function AdottOrszagTagjaE(vizsgaltTomb,adottOrszag){
+    for (i=0;i<vizsgaltTomb.length;i++){
+    	if (vizsgaltTomb[i].orszag==adottOrszag){
+        	return true;
+        }
+    }
+    return false;
+}
+let orszag="Oroszország";
+document.write("3.1. feladat: Tagja-e: "+orszag+" "+IgenNem(AdottOrszagTagjaE(EuropaiUnio,orszag)));
+document.write("<hr>");
+orszag="Németország";
+document.write("3.1.2. feladat: Tagja-e: "+orszag+" "+IgenNem(AdottOrszagTagjaE(EuropaiUnio,orszag)));
+document.write("<hr>");
+
+function VoltEMajusbanCsatlakozas(vizsgaltTomb,honap){
+    for(i=0;i<vizsgaltTomb.length;i++){
+    	if (vizsgaltTomb[i].csatlakozas.slice(5,7)==honap){
+        	return true;
+        }
+    }
+    return false;
+}
+let honap="05";
+document.write("4. feladat: Volt-e csatlakozás májusban? "+IgenNem(VoltEMajusbanCsatlakozas(EuropaiUnio,honap)));
+document.write("<hr>");
+honap="12";
+document.write("4.1. feladat: Volt-e csatlakozás "+honap+". hónapban? "+IgenNem(VoltEMajusbanCsatlakozas(EuropaiUnio,honap)));
+document.write("<hr>");
+
+
+</script>

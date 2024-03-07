@@ -1,0 +1,179 @@
+<script>
+//1. érték: Csapat neve (nev)
+//2. érték: Csapat helyezése (helyezes)
+//3. érték: Csapat helyének változása (valtozas)
+//4. érték: Csapat Pontszama (pont)
+
+const csapatAdat = [
+"Anglia;4;0;1662", 
+"Argentína;10;0;1614", 
+"Belgium;1;0;1752", 
+"Brazília;3;-1;1719", 
+"Chile;17;-3;1576", 
+"Dánia;14;-1;1584", 
+"Franciaország;2;1;1725", 
+"Hollandia;13;3;1586", 
+"Horvátország;8;-1;1625", 
+"Kolumbia;9;-1;1622", 
+"Mexikó;12;0;1603", 
+"Németország;16;-1;1580", 
+"Olaszország;15;1;1583", 
+"Peru;19;0;1551", 
+"Portugália;5;1;1643", 
+"Spanyolország;7;2;1631", 
+"Svájc;11;0;1604", 
+"Svédország;18;0;1560", 
+"Szenegál;20;0;1546", 
+"Uruguay;6;-1;1639"
+];
+
+function ObjektumFeltolto(feltoltendoElem){
+	let beolvasottAdatok=[];
+	for (let i=0;i<feltoltendoElem.length;i++){
+    	let objektum={};
+        let daraboltAdatsor=feltoltendoElem[i].split(";");
+        objektum.nev=daraboltAdatsor[0];
+        objektum.helyezes=Number(daraboltAdatsor[1]);
+        objektum.valtozas=Number(daraboltAdatsor[2]);
+        objektum.pontszam=Number(daraboltAdatsor[3]);
+        beolvasottAdatok.push(objektum);
+    }
+    return beolvasottAdatok;
+}
+const fifaAdatok=ObjektumFeltolto(csapatAdat);
+
+// 1. feladat - Hány csapat szerepel a ranglistán?
+function CsapatokSzama(vizsgaltTomb){
+	return vizsgaltTomb.length;
+}
+function CsapatSzamKiiro(kiirandoErtek){
+	document.write("A ranglistán szereplő csapatok száma: "+kiirandoErtek);
+}
+CsapatSzamKiiro(CsapatokSzama(fifaAdatok));
+document.write("<hr>");
+
+// 2. Mennyi a résztvevő csapatok átlagpontszáma?
+function AtlagPontszam(vizsgaltTomb){
+	let osszPontszam=0;
+    for (i=0;i<vizsgaltTomb.length;i++){
+    	osszPontszam+=vizsgaltTomb[i].pontszam
+    }
+    return osszPontszam/vizsgaltTomb.length;
+}
+function AtlagPontszamKiiro(kiirandoErtek){
+	document.write("A ranglistán szereplő csapatok pontjainak átlaga: "+kiirandoErtek);
+}
+AtlagPontszamKiiro(AtlagPontszam(fifaAdatok));
+document.write("<hr>");
+
+// 3. Lista az átlag feletti pontszámmal rendelkező csapatokról
+function AtlagPontszamFelettiCsapatok(vizsgaltTomb){
+	let atlagPont=AtlagPontszam(fifaAdatok);
+    let atlagFeletti=[];
+    for (let i=0;i<vizsgaltTomb.length;i++){
+    	if (vizsgaltTomb[i].pontszam>atlagPont){
+        	atlagFeletti.push(vizsgaltTomb[i].nev);
+        }
+    }
+    return atlagFeletti;
+}
+function AtlagPontszamFelettiCsapatokKiir(kiirandoTombElemei){
+	document.write("<table border=1><caption> Átlag pont feletti csapatok</caption>");
+    for (let i=0;i<kiirandoTombElemei.length;i++){
+    	document.write("<tr><td>"+kiirandoTombElemei[i]+"</td></tr>");
+    }
+    
+    document.write("</table>");
+}
+AtlagPontszamFelettiCsapatokKiir(AtlagPontszamFelettiCsapatok(fifaAdatok));
+document.write("<hr>");
+
+//4. A legtöbbet javító csapat adatai:
+function LegtobbetJavitoCsapat(vizsgaltTomb){
+	let legtobbetJavitoCsapatIndexe=0;
+    for (let i=0;i<vizsgaltTomb.length;i++){
+    	if(vizsgaltTomb[i].valtozas>vizsgaltTomb[legtobbetJavitoCsapatIndexe].valtozas){
+        	legtobbetJavitoCsapatIndexe=i
+        }
+    }
+    return legtobbetJavitoCsapatIndexe;
+}
+function LegtobbetJavitoCsapatKiir(csapatIndex){
+	document.write("A legtöbb helyezést javító csapat: "+fifaAdatok[csapatIndex].nev);
+    document.write("<br>Jelenlegi helyezése: "+fifaAdatok[csapatIndex].helyezes);
+    document.write("<br>Ennyi helyet javított: "+fifaAdatok[csapatIndex].valtozas);
+    document.write("<br>Jelenlegi pontszáma: "+fifaAdatok[csapatIndex].pontszam);
+}
+LegtobbetJavitoCsapatKiir(LegtobbetJavitoCsapat(fifaAdatok));
+document.write("<hr>");
+
+// 5. feladat Magyarország a listán van-e?
+function SzerepelEMagyarorszag(vizsgaltTomb){
+	for (let i=0;i<vizsgaltTomb.length;i++){
+    	if(vizsgaltTomb[i].nev=="Magyarország"){
+        	return true;
+        }
+    }
+    return false;
+}
+
+function SzerepelEMagyarorszagKiir(vizsgalatEredmenye){
+	if(vizsgalatEredmenye==true){
+    	document.write("Magyarország a listán van!");
+    }
+    else{
+    	document.write("Magyarország nincs a listán!");
+    }
+}
+SzerepelEMagyarorszagKiir(SzerepelEMagyarorszag(fifaAdatok))
+document.write("<hr>");
+
+// 6. feladat
+function ValtozasTipusok(vizsgaltTomb){
+	let valtozasTipusok=[];
+    for (i=0;i<vizsgaltTomb.length;i++){
+    	let szerepelE=false;
+        for(let j=0;j<valtozasTipusok.length;j++){
+        	if(vizsgaltTomb[i].valtozas==valtozasTipusok[j]){
+            	szerepelE=true;
+            }
+        }
+        if(szerepelE==false){
+        	valtozasTipusok.push(vizsgaltTomb[i].valtozas);
+        }
+    }
+    return valtozasTipusok;
+}
+
+function ValtozasokMennyisege(vizsgaltTomb,valtozasTipusok){
+	let valtozasokMennyisege=[];
+    for (let i=0;i<valtozasTipusok.length;i++){
+    		valtozasokMennyisege.push(0);
+    }
+    for (i=0;i<vizsgaltTomb.length;i++){
+    	 for(let j=0;j<valtozasTipusok.length;j++){
+        	if(vizsgaltTomb[i].valtozas==valtozasTipusok[j])
+            {
+            	valtozasokMennyisege[j]++;
+          	}
+    	}
+	}
+    return valtozasokMennyisege;
+}
+
+function ValtozasokKiirTablazatba(valtozasTipusok,valtozasMennyisegek){
+	document.write("<table border=1><caption> Változások listája </caption>");
+	for (let i=0;i<valtozasMennyisegek.length;i++){
+    	if(valtozasMennyisegek[i]>1){
+       		document.write("<tr><th>"+valtozasTipusok[i]+"</th><td>"+valtozasMennyisegek[i]+"</td></tr>");
+        }
+    }
+    document.write("</table>");
+}
+let valtozasSzurese=ValtozasTipusok(fifaAdatok);
+ValtozasokKiirTablazatba(valtozasSzurese,ValtozasokMennyisege(fifaAdatok,valtozasSzurese));
+
+
+
+
+</script>

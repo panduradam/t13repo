@@ -1,0 +1,234 @@
+<script>
+function PrimEljaras(){
+	let szam=Number(prompt("Add meg a vizsgálandó számot:"));
+    let oszto=0;
+    for(let i=1;i<=szam;i++){
+    	if(szam%i==0){
+        	oszto++;
+        }
+    }
+    if(oszto==2){
+    	document.write("A(z) "+szam+" prím");
+    }
+    else{
+    	document.write("A(z)"+szam+" NEM prím");
+    }    
+}
+document.write("Első feladat: ");
+PrimEljaras();
+document.write("<hr>");
+
+document.write("Második feladat: ");
+function Koordinata(x,y){
+	if(x>0 && y>0){
+    	document.write(`<br>A ${x},${y} koorditána az első síknegyedben van.`);
+    }
+    else if(x<0 && y>0){
+    	document.write(`<br>A ${x},${y} koorditána az második síknegyedben van.`);
+    }
+    else if(x<0 && y<0){
+    	document.write(`<br>A ${x},${y} koorditána az harmadik síknegyedben van.`);
+    }
+    else if(x>0 && y<0){
+    	document.write(`<br>A ${x},${y} koorditána az negyedik síknegyedben van.`);
+    }
+    else if(x==0 && y==0){
+    	document.write(`<br>A ${x},${y} koorditána az origóban van.`);
+    }
+    else if(x==0){
+    	document.write(`<br>A ${x},${y} koorditána az y tengelyen van.`);
+    }
+    else{
+    	document.write(`<br>A ${x},${y} koorditána az x tengelyen van.`);
+    }
+}
+Koordinata(9,9);
+Koordinata(-9,9);
+Koordinata(-9,-9);
+Koordinata(9,-9);
+Koordinata(0,0);
+Koordinata(0,9);
+Koordinata(9,0);
+document.write("<hr>");
+
+document.write("Harmadik feladat: ");
+function MelyikANagyobb(szamEgy, szamKetto, szamHarom){
+	if(szamEgy>=szamKetto && szamEgy>=szamHarom){
+    	return szamEgy;
+	}
+	else if(szamKetto>=szamEgy && szamKetto>=szamHarom)
+	{
+    	return szamKetto;
+	}
+	else{
+   	 	return szamHarom;
+	}
+}
+document.write("<hr>");
+document.write(MelyikANagyobb(2,6,10));
+document.write("<hr>");
+document.write(MelyikANagyobb(1,5,9));
+document.write("<hr>");
+document.write(MelyikANagyobb(3,5,5));
+document.write("<hr>");
+document.write(MelyikANagyobb(2,2,2));
+document.write("<hr>");
+document.write(MelyikANagyobb(11,12,13));
+document.write("<hr>");
+
+document.write("Negyedik feladat: ");
+document.write("<hr>");
+function SzorgalomJegyek(jegy){
+	if(jegy==2){
+     	document.write("hanyag"); 
+    }
+    else if(jegy==3){
+     	document.write("változó"); 
+    }
+    else if(jegy==4){
+     	document.write("jó"); 
+    }
+    else if(jegy==5){
+     	document.write("példás"); 
+    }
+    else{
+     	document.write("hibás adat"); 
+    }
+}
+SzorgalomJegyek(2);
+document.write("<hr>");
+SzorgalomJegyek(3);
+document.write("<hr>");
+SzorgalomJegyek(4);
+document.write("<hr>");
+SzorgalomJegyek(5);
+document.write("<hr>");
+SzorgalomJegyek(6);
+document.write("<hr>");
+
+document.write("Ötödik feladat: ");
+document.write("<hr>");
+function TizennyolcPlusz(kor){
+	if(kor<18){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+document.write(TizennyolcPlusz(16));
+document.write("<hr>");
+document.write(TizennyolcPlusz(22));
+document.write("<hr>");
+
+document.write("Hatodik feladat: Ezt sajnos nem értem (lnko feladat)");
+document.write("<hr>");
+
+document.write("Hetedik feladat: ");
+document.write("<hr>");
+
+function SzamtaniSorozatGenerator(elsoElem, kulonbseg, elemSzam){
+	for(let i=0;i<elemSzam;i++){
+    	document.write(elsoElem+",");
+        elsoElem+=kulonbseg;
+    }
+}
+SzamtaniSorozatGenerator(12, 122, 4);
+document.write("<hr>");
+SzamtaniSorozatGenerator(12, 222, 4);
+document.write("<hr>");
+
+document.write("Nyolcadik feladat: ");
+document.write("<hr>");
+function PrimFuggveny(vizsgaltSzam){
+    let oszto=0;
+    for(let i=1;i<=vizsgaltSzam;i++){
+    	if(vizsgaltSzam%i==0){
+        	oszto++;
+        }
+    }
+    if(oszto==2){
+    	return true;
+    }
+    else{
+    	return false;
+    }    
+}
+document.write(PrimFuggveny(193));
+document.write("<hr>");
+document.write(PrimFuggveny(139));
+document.write("<hr>");
+
+document.write("Kilencedik feladat: ");
+document.write("<hr>");
+
+function ParosGenerator(alsoHatar, felsoHatar){
+	let generaltSzam=Math.round(Math.random()*(felsoHatar-alsoHatar))+alsoHatar;
+	if(generaltSzam%2==0){
+		return generaltSzam;
+	}
+	else if(generaltSzam!=felsoHatar){
+		return generaltSzam+1;
+	}
+	else{
+		return generaltSzam-1;
+	}
+}
+document.write(ParosGenerator(1,9));
+document.write("<hr>");
+
+document.write(ParosGenerator(11,19));
+document.write("<hr>");
+
+document.write(ParosGenerator(111,115));
+document.write("<hr>");
+
+document.write("Tizedik feladat: ");
+document.write("<hr>");
+function KettoHatvanyai(elemSzam){
+	for(let i=0;i<elemSzam;i++){
+    	document.write(2**i+",");
+    }
+}
+KettoHatvanyai(3);
+document.write("<hr>");
+KettoHatvanyai(6);
+document.write("<hr>");
+
+document.write("Tizenegyedik feladat: ");
+document.write("<hr>");
+function SzerkeszhetoHaromszog(aOldal,bOldal,cOldal){
+	if(aOldal+bOldal>cOldal && aOldal+cOldal>bOldal && cOldal+bOldal>aOldal){
+    	return true;
+    }
+    else{
+    	return false;
+    }
+}
+document.write("<hr>");
+document.write(SzerkeszhetoHaromszog(2,4,6));
+document.write("<hr>");
+document.write(SzerkeszhetoHaromszog(5,5,5));
+document.write("<hr>");
+document.write(SzerkeszhetoHaromszog(23,46,69));
+document.write("<hr>");
+
+document.write("Tizenkettedik feladat: ");
+function NegyzetKerulet(aOldal){
+	return aOldal*4;
+}
+function NegyzetTerulet(aOldal){
+	return aOldal*aOldal;
+}
+function EredmenyKiirato(oldalMeret){
+    document.write(`A(z) ${oldalMeret} egység oldalú négyzet kerülete: ${NegyzetKerulet(oldalMeret)}`);
+	document.write(`<br>A(z) ${oldalMeret} egység oldalú négyzet területe: ${NegyzetTerulet(oldalMeret)}`);
+}
+document.write("<hr>");
+EredmenyKiirato(9);
+document.write("<hr>");
+EredmenyKiirato(15);
+document.write("<hr>");
+EredmenyKiirato(22);
+
+</script>
